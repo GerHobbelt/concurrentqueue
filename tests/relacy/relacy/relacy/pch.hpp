@@ -56,7 +56,7 @@
 #   ifndef _WIN32_WINNT
 #       define _WIN32_WINNT 0x0500
 #   endif
-#   define WIN32_LEAN_AND_MEAN
+//#   define WIN32_LEAN_AND_MEAN
 #   include <windows.h>
 #   include <process.h>
 #   ifdef RL_WIN

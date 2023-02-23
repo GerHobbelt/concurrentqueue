@@ -7,7 +7,7 @@
 //#define MCDBGQ_NOLOCKFREE_IMPLICITPRODHASH 1
 
 #if defined(_WIN32) || defined(__WINDOWS__) || defined(__WIN32__)
-#define WIN32_LEAN_AND_MEAN
+//#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 namespace moodycamel { namespace debug {
 	struct DebugMutex {
