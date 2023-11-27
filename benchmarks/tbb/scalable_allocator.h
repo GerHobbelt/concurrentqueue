@@ -300,6 +300,11 @@ inline bool operator!=( const scalable_allocator<T>&, const scalable_allocator<U
     #endif
 
     #if !__TBBMALLOC_NO_IMPLICIT_LINKAGE
+
+#pragma message ("Monolithic builds SHOULD NOT produce pesky boost::auto_link #pragma comment(lib, xyz) linker instructions. This is by design; if you must, add them by hand, but really your MSVC projects' dependency chain should take care of this by itself.")
+
+#error XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
         #ifdef _DEBUG
             #pragma comment(lib, "tbbmalloc_debug.lib")
         #else

@@ -60,13 +60,18 @@ namespace std {
 
 #if _MSC_VER
     #if !__TBB_NO_IMPLICIT_LINKAGE
+
+#pragma message ("Monolithic builds SHOULD NOT produce pesky boost::auto_link #pragma comment(lib, xyz) linker instructions. This is by design; if you must, add them by hand, but really your MSVC projects' dependency chain should take care of this by itself.")
+
+#error XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
         #ifdef __TBB_LIB_NAME
-	        //#pragma comment(lib, __TBB_STRING(__TBB_LIB_NAME))
+	        #pragma comment(lib, __TBB_STRING(__TBB_LIB_NAME))
         #else
 			#ifdef _DEBUG
-				//#pragma comment(lib, "tbb_debug.lib")
+				#pragma comment(lib, "tbb_debug.lib")
 			#else
-				//#pragma comment(lib, "tbb.lib")
+				#pragma comment(lib, "tbb.lib")
 			#endif
         #endif
     #endif

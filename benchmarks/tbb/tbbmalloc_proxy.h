@@ -41,16 +41,24 @@ tbbmalloc_proxy.lib /INCLUDE:"__TBB_malloc_proxy"
 
 #if _MSC_VER
 
+#if !defined(BUILD_MONOLITHIC)
+
+#pragma message ("Monolithic builds SHOULD NOT produce pesky boost::auto_link #pragma comment(lib, xyz) linker instructions. This is by design; if you must, add them by hand, but really your MSVC projects' dependency chain should take care of this by itself.")
+
+#error XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
 #ifdef _DEBUG
-    //#pragma comment(lib, "tbbmalloc_proxy_debug.lib")
+    #pragma comment(lib, "tbbmalloc_proxy_debug.lib")
 #else
-    //#pragma comment(lib, "tbbmalloc_proxy.lib")
+    #pragma comment(lib, "tbbmalloc_proxy.lib")
 #endif
 
 #if defined(_WIN64)
-    //#pragma comment(linker, "/include:__TBB_malloc_proxy")
+    #pragma comment(linker, "/include:__TBB_malloc_proxy")
 #else
-    //#pragma comment(linker, "/include:___TBB_malloc_proxy")
+    #pragma comment(linker, "/include:___TBB_malloc_proxy")
+#endif
+
 #endif
 
 #else
