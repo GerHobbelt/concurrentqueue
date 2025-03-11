@@ -509,9 +509,9 @@ namespace details
 	template<typename T>
 	static inline void swap_relaxed(std::atomic<T>& left, std::atomic<T>& right)
 	{
-		T temp = std::move(left.load(std::memory_order_relaxed));
-		left.store(std::move(right.load(std::memory_order_relaxed)), std::memory_order_relaxed);
-		right.store(std::move(temp), std::memory_order_relaxed);
+		T temp = left.load(std::memory_order_relaxed);
+		left.store(right.load(std::memory_order_relaxed), std::memory_order_relaxed);
+		right.store(temp, std::memory_order_relaxed);
 	}
 	
 	template<typename T>
@@ -1604,7 +1604,7 @@ private:
 			}
 			else {
 				// Increment counter
-				auto prevVal = elementsCompletelyDequeued.fetch_add(1, std::memory_order_release);
+				auto prevVal = elementsCompletelyDequeued.fetch_add(1, std::memory_order_acq_rel);
 				assert(prevVal < BLOCK_SIZE);
 				return prevVal == BLOCK_SIZE - 1;
 			}
@@ -1627,7 +1627,7 @@ private:
 			}
 			else {
 				// Increment counter
-				auto prevVal = elementsCompletelyDequeued.fetch_add(count, std::memory_order_release);
+				auto prevVal = elementsCompletelyDequeued.fetch_add(count, std::memory_order_acq_rel);
 				assert(prevVal + count <= BLOCK_SIZE);
 				return prevVal + count == BLOCK_SIZE;
 			}
