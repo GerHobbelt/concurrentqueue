@@ -5,8 +5,12 @@
 
 #pragma once
 
-#include <cstddef> // For std::size_t
 #include <atomic>
+#include <cassert> // assert
+#include <cerrno> // For EINTR
+#include <cstddef> // For std::size_t
+#include <cstdint> // For std::uint64_t
+#include <ctime> // For clock_gettime
 #include <type_traits> // For std::make_signed<T>
 
 #if defined(_WIN32)
