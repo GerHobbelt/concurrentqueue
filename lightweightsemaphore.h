@@ -36,6 +36,14 @@ extern "C" {
 #endif
 #endif
 
+#ifndef MOODYCAMEL_DELETE_FUNCTION
+#if __cplusplus >= 201103L || _MSC_VER >= 1900
+#define MOODYCAMEL_DELETE_FUNCTION = delete
+#else
+#define MOODYCAMEL_DELETE_FUNCTION
+#endif
+#endif
+
 namespace moodycamel
 {
 namespace details
